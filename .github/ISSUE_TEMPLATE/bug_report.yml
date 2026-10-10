@@ -1,0 +1,27 @@
+name: Bug report
+description: Report a reproducible integration problem.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "Do not include credentials, private IP addresses, recordings, channel lists or DMS configuration exports."
+  - type: input
+    id: version
+    attributes:
+      label: Integration version
+    validations:
+      required: true
+  - type: input
+    id: ha_version
+    attributes:
+      label: Home Assistant version
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Include safe, repeatable steps and redacted logs only.
+    validations:
+      required: true

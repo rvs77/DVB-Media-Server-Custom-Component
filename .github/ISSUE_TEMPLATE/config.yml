@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Support and usage questions
+    url: https://github.com/vracioppi/ha-dvbviewer-dms/discussions
+    about: Use Discussions for questions once the repository is public.

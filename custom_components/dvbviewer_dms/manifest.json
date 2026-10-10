@@ -1,0 +1,12 @@
+{
+  "domain": "dvbviewer_dms",
+  "name": "DVBViewer Media Server (Unofficial)",
+  "codeowners": ["@vracioppi"],
+  "config_flow": true,
+  "documentation": "https://github.com/vracioppi/ha-dvbviewer-dms",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/vracioppi/ha-dvbviewer-dms/issues",
+  "integration_type": "service",
+  "requirements": [],
+  "version": "0.1.0"
+}

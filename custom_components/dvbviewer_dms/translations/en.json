@@ -1,0 +1,15 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to DVBViewer Media Server",
+        "description": "Enter the host and API port of DVBViewer Media Server.",
+        "data": {"host": "Host", "port": "Port", "username": "Username", "password": "Password", "videorec_url": "VideoREC URL"}
+    },
+    "options": {
+      "step": {"init": {"title": "VideoREC verification", "data": {"videorec_url": "VideoREC URL"}}}
+    }
+    },
+    "error": {"cannot_connect": "Unable to connect to DVBViewer Media Server."}
+  }
+}
