@@ -34,7 +34,7 @@ class DmsConfigNumber(NumberEntity):
         self.coordinator = coordinator
         self.wake_manager = wake_manager
         self.key = key
-        self._attr_device_info = DmsEntity.device_info(coordinator)
+        self._attr_device_info = DmsEntity.build_device_info(coordinator)
         if key == CONF_WAKE_ADVANCE:
             self._attr_translation_key = "wake_advance"
             self._attr_unique_id = f"{entry.entry_id}_wake_advance"
