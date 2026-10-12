@@ -33,6 +33,20 @@ def test_coordinator_entities_receive_unique_id_keys():
     assert 'DmsConnectivitySensor(coordinator, "connected")' in binary_source
 
 
+def test_device_info_builder_does_not_shadow_home_assistant_entity_property():
+    entity_source = (ROOT / "custom_components/dvbviewer_dms/entity.py").read_text()
+    sensor_source = (ROOT / "custom_components/dvbviewer_dms/sensor.py").read_text()
+    number_source = (ROOT / "custom_components/dvbviewer_dms/number.py").read_text()
+
+    assert "def device_info(" not in entity_source
+    assert "def build_device_info(" in entity_source
+    assert "self._attr_device_info = self.build_device_info(coordinator)" in entity_source
+    assert "DmsEntity.build_device_info(coordinator)" in sensor_source
+    assert "DmsEntity.build_device_info(coordinator)" in number_source
+    assert "DmsEntity.device_info(coordinator)" not in sensor_source
+    assert "DmsEntity.device_info(coordinator)" not in number_source
+
+
 def test_sensor_binary_and_number_platforms_are_loaded():
     source = (ROOT / "custom_components/dvbviewer_dms/__init__.py").read_text()
     for platform in ("Platform.SENSOR", "Platform.BINARY_SENSOR", "Platform.NUMBER"):
