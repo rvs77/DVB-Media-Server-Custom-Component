@@ -14,10 +14,10 @@ async def async_setup_entry(hass, entry, async_add_entities):
     data = hass.data[DOMAIN][entry.entry_id]
     coordinator = data["coordinator"]
     async_add_entities([
-        DmsStateSensor(coordinator),
-        DmsNextTimerSensor(coordinator),
-        DmsCurrentRecordingSensor(coordinator),
-        DmsArchiveSensor(coordinator),
+        DmsStateSensor(coordinator, "status"),
+        DmsNextTimerSensor(coordinator, "next_recording"),
+        DmsCurrentRecordingSensor(coordinator, "current_recording"),
+        DmsArchiveSensor(coordinator, "recording_archive"),
         DmsNextWakeSensor(coordinator, data["wake_manager"]),
     ])
 
