@@ -19,10 +19,30 @@ def test_only_requested_sensors_are_registered_and_removed_classes_are_absent():
         assert removed not in source
 
 
+def test_coordinator_entities_receive_unique_id_keys():
+    sensor_source = (ROOT / "custom_components/dvbviewer_dms/sensor.py").read_text()
+    for call in (
+        'DmsStateSensor(coordinator, "status")',
+        'DmsNextTimerSensor(coordinator, "next_recording")',
+        'DmsCurrentRecordingSensor(coordinator, "current_recording")',
+        'DmsArchiveSensor(coordinator, "recording_archive")',
+    ):
+        assert call in sensor_source
+
+    binary_source = (ROOT / "custom_components/dvbviewer_dms/binary_sensor.py").read_text()
+    assert 'DmsConnectivitySensor(coordinator, "connected")' in binary_source
+
+
 def test_sensor_binary_and_number_platforms_are_loaded():
     source = (ROOT / "custom_components/dvbviewer_dms/__init__.py").read_text()
     for platform in ("Platform.SENSOR", "Platform.BINARY_SENSOR", "Platform.NUMBER"):
         assert platform in source
+
+
+def test_diagnostics_uses_stored_coordinator():
+    source = (ROOT / "custom_components/dvbviewer_dms/diagnostics.py").read_text()
+    assert 'entry_data = hass.data[DOMAIN][entry.entry_id]' in source
+    assert 'coordinator = entry_data["coordinator"]' in source
 
 
 def test_config_numbers_have_expected_defaults_ranges_and_are_available_offline():
