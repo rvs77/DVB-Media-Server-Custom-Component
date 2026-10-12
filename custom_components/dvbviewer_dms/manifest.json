@@ -3,10 +3,10 @@
   "name": "DVBViewer Media Server (Non ufficiale)",
   "codeowners": ["@rvs77"],
   "config_flow": true,
-  "documentation": "https://github.com/rvs77/HA-DVBViewer-DMS",
+  "documentation": "https://github.com/rvs77/DVB-Media-Server-Custom-Component",
   "iot_class": "local_polling",
-  "issue_tracker": "https://github.com/rvs77/HA-DVBViewer-DMS/issues",
+  "issue_tracker": "https://github.com/rvs77/DVB-Media-Server-Custom-Component/issues",
   "integration_type": "service",
   "requirements": [],
-  "version": "0.1.0"
+  "version": "0.1.1"
 }
