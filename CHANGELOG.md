@@ -2,9 +2,9 @@
 
 Tutte le modifiche rilevanti del progetto sono documentate in questo file.
 
-## 0.1.0 - Non rilasciata
+## 0.1.3 - 2026-10-12
 
-- Prima integrazione Home Assistant in sola lettura per DVBViewer Media Server.
+- Prima release della custom integration Home Assistant in sola lettura per DVBViewer Media Server.
 - Config flow nativo, aggiornamenti basati su coordinator e diagnostica.
 - Entità per connettività, stato del server, timer e registrazioni.
 - Timestamp dei timer gestiti con fuso orario Europe/Rome.
@@ -14,4 +14,6 @@ Tutte le modifiche rilevanti del progetto sono documentate in questo file.
 - Entità `number` configurabili da interfaccia per anticipo accensione e soglia timer ravvicinati.
 - Configurazione disponibile anche quando DMS è offline; non sono incluse automazioni energetiche né comandi diretti di accensione o spegnimento del computer.
 - Rimossi i riferimenti e la logica specifica di un ambiente personale: nessun endpoint esterno di verifica registrazioni e nessuna configurazione dedicata a un computer specifico.
-- Documentazione e interfaccia italiana rese generiche per un utilizzo pubblico tramite HACS.
+- Corretti il caricamento runtime delle entità coordinate e l'accesso ai dati nella diagnostica.
+- Rimossa la dicitura `(Non ufficiale)` dal nome visualizzato della custom component.
+- Aggiunto il branding locale con il logo ufficiale DVBViewer Media Server.
