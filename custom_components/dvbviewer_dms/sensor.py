@@ -129,7 +129,7 @@ class DmsNextWakeSensor(SensorEntity):
         self.coordinator = coordinator
         self.manager = manager
         self._attr_unique_id = f"{coordinator.config_entry.entry_id}_next_dms_wake"
-        self._attr_device_info = DmsEntity.device_info(coordinator)
+        self._attr_device_info = DmsEntity.build_device_info(coordinator)
 
     @property
     def available(self):
