@@ -1,6 +1,6 @@
 {
   "domain": "dvbviewer_dms",
-  "name": "DVBViewer Media Server (Non ufficiale)",
+  "name": "DVBViewer Media Server",
   "codeowners": ["@rvs77"],
   "config_flow": true,
   "documentation": "https://github.com/rvs77/DVB-Media-Server-Custom-Component",
