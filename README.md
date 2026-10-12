@@ -72,7 +72,7 @@ Home Assistant può modificare automaticamente un ID se esiste già un'entità c
 
 1. Aprire HACS.
 2. Aggiungere questo repository come repository personalizzato di tipo **Integration**.
-3. Installare **DVBViewer Media Server (Non ufficiale)**.
+3. Installare **DVBViewer Media Server**.
 4. Riavviare Home Assistant.
 5. Aprire **Impostazioni → Dispositivi e servizi → Aggiungi integrazione**.
 6. Cercare **DVBViewer Media Server**.
