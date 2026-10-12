@@ -1,0 +1,23 @@
+__pycache__/
+.pytest_cache/
+.venv/
+*.py[cod]
+.coverage
+coverage.xml
+.DS_Store
+
+# Local Home Assistant configuration and runtime data
+.env*
+secrets.yaml
+configuration.yaml
+.storage/
+home-assistant_v2.db*
+logs/
+*.log
+
+# Credentials and private key material
+credentials*
+*.key
+*.pem
+*.pfx
+*.p12

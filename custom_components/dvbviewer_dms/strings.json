@@ -1,0 +1,35 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Collega DVBViewer Media Server",
+        "description": "Inserisci host e porta API di DVBViewer Media Server.",
+        "data": {
+          "host": "Host",
+          "port": "Porta",
+          "username": "Nome utente",
+          "password": "Password"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Impossibile collegarsi a DVBViewer Media Server."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "connected": {"name": "Connesso"}
+    },
+    "sensor": {
+      "status": {"name": "Stato"},
+      "next_recording": {"name": "Prossima registrazione"},
+      "current_recording": {"name": "Registrazione in corso"},
+      "recording_archive": {"name": "Archivio registrazioni"},
+      "next_dms_wake": {"name": "Prossima accensione DMS"}
+    },
+    "number": {
+      "wake_advance": {"name": "Anticipo accensione DMS"},
+      "nearby_timer_threshold": {"name": "Soglia timer ravvicinati"}
+    }
+  }
+}

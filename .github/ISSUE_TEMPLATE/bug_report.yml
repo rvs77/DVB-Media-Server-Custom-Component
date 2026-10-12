@@ -1,0 +1,27 @@
+name: Segnalazione bug
+description: Segnala un problema riproducibile dell'integrazione.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "Non includere credenziali, indirizzi IP privati, registrazioni, liste canali o esportazioni della configurazione DMS."
+  - type: input
+    id: version
+    attributes:
+      label: Versione dell'integrazione
+    validations:
+      required: true
+  - type: input
+    id: ha_version
+    attributes:
+      label: Versione di Home Assistant
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Che cosa è successo?
+      description: Includi soltanto passaggi ripetibili in sicurezza e log opportunamente oscurati.
+    validations:
+      required: true
