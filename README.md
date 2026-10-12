@@ -80,7 +80,7 @@ Home Assistant può modificare automaticamente un ID se esiste già un'entità c
 
 Repository:
 
-`https://github.com/rvs77/HA-DVBViewer-DMS`
+`https://github.com/rvs77/DVB-Media-Server-Custom-Component`
 
 In questa fase il progetto è distribuito come **repository HACS personalizzato** e non come integrazione ufficiale Home Assistant o DVBViewer.
 
