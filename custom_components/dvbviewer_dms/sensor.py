@@ -205,13 +205,47 @@ class DmsNextTimerDisplaySensor(DmsNextTimerSensor):
     def __init__(self, coordinator) -> None:
         super().__init__(coordinator, "next_recording_display")
 
+    async def async_added_to_hass(self) -> None:
+        # Skip the timestamp parent's restore parser: this entity's state is text.
+        await super(DmsNextTimerSensor, self).async_added_to_hass()
+        restored = await self.async_get_last_state()
+        if restored:
+            attributes = dict(restored.attributes)
+            if all(attributes.get(key) for key in ("title", "channel", "start")):
+                self._stored_attributes = attributes
+        persisted = await self._store.async_load()
+        if isinstance(persisted, dict):
+            value = persisted.get("value")
+            if isinstance(value, str):
+                try:
+                    self._stored_value = datetime.fromisoformat(value)
+                except ValueError:
+                    pass
+            attributes = persisted.get("attributes")
+            if isinstance(attributes, dict) and all(
+                attributes.get(key) for key in ("title", "channel", "start")
+            ):
+                self._stored_attributes = attributes
+
     @property
     def native_value(self):
         timer = self._next
-        if not timer or not timer.start:
+        if timer and timer.start:
+            local_start = timer.start.astimezone(LOCAL_TIMEZONE)
+            return f"{timer.title} · {timer.channel} · {local_start:%H:%M}"
+
+        attributes = self._stored_attributes
+        title = attributes.get("title")
+        channel = attributes.get("channel")
+        start = attributes.get("start")
+        if not title or not channel or not start:
             return None
-        local_start = timer.start.astimezone(LOCAL_TIMEZONE)
-        return f"{timer.title} · {timer.channel} · {local_start:%H:%M}"
+        try:
+            start_time = start if isinstance(start, datetime) else datetime.fromisoformat(start)
+        except (TypeError, ValueError):
+            return None
+        local_start = start_time.astimezone(LOCAL_TIMEZONE)
+        return f"{title} · {channel} · {local_start:%H:%M}"
 
 
 class DmsCurrentRecordingSensor(DmsEntity, SensorEntity):
