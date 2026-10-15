@@ -203,7 +203,7 @@ class DmsNextTimerDisplaySensor(DmsNextTimerSensor):
     _attr_entity_category = None
 
     def __init__(self, coordinator) -> None:
-        DmsEntity.__init__(self, coordinator, "next_recording_display")
+        super().__init__(coordinator, "next_recording_display")
 
     @property
     def native_value(self):
