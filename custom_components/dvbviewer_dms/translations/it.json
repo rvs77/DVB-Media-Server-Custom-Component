@@ -24,6 +24,7 @@
       "status": {"name": "Stato"},
       "next_recording": {"name": "Prossima registrazione"},
       "next_recording_display": {"name": "Prossima registrazione"},
+      "last_recording": {"name": "Ultima registrazione"},
       "current_recording": {"name": "Registrazione in corso"},
       "recording_archive": {"name": "Archivio registrazioni"},
       "next_dms_wake": {"name": "Prossima accensione DMS"}

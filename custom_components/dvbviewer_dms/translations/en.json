@@ -24,6 +24,7 @@
       "status": {"name": "Status"},
       "next_recording": {"name": "Next recording"},
       "next_recording_display": {"name": "Next recording"},
+      "last_recording": {"name": "Last recording"},
       "current_recording": {"name": "Current recording"},
       "recording_archive": {"name": "Recording archive"},
       "next_dms_wake": {"name": "Next DMS wake"}
