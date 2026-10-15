@@ -16,6 +16,7 @@ async def async_setup_entry(hass, entry, async_add_entities):
     async_add_entities([
         DmsStateSensor(coordinator, "status"),
         DmsNextTimerSensor(coordinator, "next_recording"),
+        DmsNextTimerDisplaySensor(coordinator),
         DmsCurrentRecordingSensor(coordinator, "current_recording"),
         DmsArchiveSensor(coordinator, "recording_archive"),
         DmsNextWakeSensor(coordinator, data["wake_manager"]),
@@ -56,6 +57,7 @@ class DmsNextTimerSensor(DmsEntity, SensorEntity):
     _attr_translation_key = "next_recording"
     _attr_device_class = SensorDeviceClass.TIMESTAMP
     _attr_icon = "mdi:calendar-clock"
+    _attr_entity_category = EntityCategory.DIAGNOSTIC
 
     @property
     def _next(self):
@@ -74,6 +76,25 @@ class DmsNextTimerSensor(DmsEntity, SensorEntity):
     def extra_state_attributes(self):
         timer = self._next
         return {} if not timer else timer.as_dict()
+
+
+class DmsNextTimerDisplaySensor(DmsNextTimerSensor):
+    """Human-readable view of the next timer, using coordinator data only."""
+
+    _attr_translation_key = "next_recording_display"
+    _attr_device_class = None
+    _attr_entity_category = None
+
+    def __init__(self, coordinator) -> None:
+        DmsEntity.__init__(self, coordinator, "next_recording_display")
+
+    @property
+    def native_value(self):
+        timer = self._next
+        if not timer or not timer.start:
+            return None
+        local_start = timer.start.astimezone(LOCAL_TIMEZONE)
+        return f"{timer.title} · {timer.channel} · {local_start:%H:%M}"
 
 
 class DmsCurrentRecordingSensor(DmsEntity, SensorEntity):

@@ -13,7 +13,7 @@ from api import public_recording
 def test_only_requested_sensors_are_registered_and_removed_classes_are_absent():
     source = (ROOT / "custom_components/dvbviewer_dms/sensor.py").read_text()
     setup = source.split("async def async_setup_entry", 1)[1].split("class DmsStateSensor", 1)[0]
-    for name in ("DmsStateSensor", "DmsNextTimerSensor", "DmsCurrentRecordingSensor", "DmsArchiveSensor", "DmsNextWakeSensor"):
+    for name in ("DmsStateSensor", "DmsNextTimerSensor", "DmsNextTimerDisplaySensor", "DmsCurrentRecordingSensor", "DmsArchiveSensor", "DmsNextWakeSensor"):
         assert name in setup
     for removed in ("DmsVersionSensor", "DmsTimerCountSensor", "DmsRecordingCountSensor", "DmsChannelsSensor", "DmsTunersSensor"):
         assert removed not in source
@@ -26,6 +26,8 @@ def test_coordinator_entities_receive_unique_id_keys():
         'DmsNextTimerSensor(coordinator, "next_recording")',
         'DmsCurrentRecordingSensor(coordinator, "current_recording")',
         'DmsArchiveSensor(coordinator, "recording_archive")',
+        'DmsNextTimerDisplaySensor(coordinator)',
+        'DmsNextWakeSensor(coordinator, data["wake_manager"])',
     ):
         assert call in sensor_source
 
@@ -76,7 +78,7 @@ def test_all_translations_have_entity_names_for_public_entities():
     for filename in ("strings.json", "translations/en.json", "translations/it.json"):
         data = json.loads((base / filename).read_text(encoding="utf-8"))
         entities = data["entity"]
-        assert set(entities["sensor"]) == {"status", "next_recording", "current_recording", "recording_archive", "next_dms_wake"}
+        assert set(entities["sensor"]) == {"status", "next_recording", "next_recording_display", "current_recording", "recording_archive", "next_dms_wake"}
         assert set(entities["number"]) == {"wake_advance", "nearby_timer_threshold"}
         assert "connected" in entities["binary_sensor"]
 
